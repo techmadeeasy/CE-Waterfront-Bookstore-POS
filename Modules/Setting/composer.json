@@ -1,0 +1,23 @@
+{
+    "name": "vgomani/setting",
+    "description": "",
+    "authors": [
+        {
+            "name": "Venancio Gomani",
+            "email": "info@venanciogomani.net"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\Setting\\": ""
+        }
+    }
+}
