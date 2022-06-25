@@ -3,6 +3,7 @@
 
 # Local Installation
 
+- clone repo by running ``git clone https://github.com/venanciogomanijr/CE-Waterfront-Bookstore-POS.git``
 - run ``composer update `` 
 - run `` npm install ``
 - run ``npm run dev``
@@ -35,5 +36,9 @@
 - **System Settings**
 - **Reports**
 
+## Credits
+> Author: Venancio Gomani Jr.
+> Support Email: info@venanciogomani.net
+> Author Website: www.venanciogomani.net
 # License
 **[Creative Commons Attribution 4.0	cc-by-4.0](https://creativecommons.org/licenses/by/4.0/)**
