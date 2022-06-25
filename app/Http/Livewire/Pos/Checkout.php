@@ -212,4 +212,8 @@ class Checkout extends Component
             'product_discount_type' => $this->discount_type[$product_id],
         ]]);
     }
+
+    public function selectCustomer ($customer_tmp_id) {
+        $this->customer_id = $customer_tmp_id;
+    }
 }

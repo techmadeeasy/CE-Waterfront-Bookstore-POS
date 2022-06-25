@@ -15,17 +15,36 @@
 
                 <div class="form-group">
                     <!-- TODO: finish dynamic name search -->
-                    <!--
                     <div class="input-group mb-1">
                         <div class="input-group-prepend">
                             <a href="{{ route('customers.create') }}" class="btn btn-primary">
                                 <i class="bi bi-person-plus"></i>
                             </a>
                         </div>
-                        <input type="text" name="customer-name-search" id="customer-name-search" 
-                            placeholder="Type customer name..." class="form-control" onkeyup="dynamicNameSearch(event, {{$customers}})">
-                    </div> -->
+                        <input type="text" name="customer-name-autocomplete" id="customer-name-autocomplete"
+                            placeholder="Type customer name..." class="form-control dropdown-toggle hs-searchbox"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" autocomplete="off"
+                            onkeyup="dynamicNameSearch(event, {{$customers}})">
+                        <div class="dropdown hierarchy-select w-100" id="example">
+                            <div class="dropdown-menu w-75 shadow p-3 mb-5 bg-white rounded" aria-labelledby="example-two-button">
+                                <div class="hs-menu-inner" style="max-height: 300px; overflow-y: scroll;">
+                                    <a id="customers-dropdown-item-prompt" class="dropdown-item" data-value="" data-default-selected="">Select Customer</a>
+                                    @foreach($customers as $customer)
+                                        <a class="dropdown-item customers-dropdown-item" data-value="{{ $customer->id }}" 
+                                            onclick="populateCustomerInputWithClicked(this)" wire:click.prevent="selectCustomer({{ $customer->id }})">
+                                            {{ $customer->customer_name }}
+                                        </a>
+                                    @endforeach
+                                    <span id="dropdown-item-no-match-dropdown" class="dropdown-item d-none">No matches found</span>
+                                    <a id="create-new-user-from-pos-dropdown" class="dropdown-item d-none text-danger" data-toggle="modal" data-target="#createCustomerModal">Create Customer</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <!-- TODO: finish dynamic name search -->
+
+                    <!-- TODO: remove legacy select customers dropdown start -->
+                    <!-- 
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <a href="{{ route('customers.create') }}" class="btn btn-primary">
@@ -38,7 +57,8 @@
                                 <option value="{{ $customer->id }}">{{ $customer->customer_name }}</option>
                             @endforeach
                         </select>
-                    </div>
+                    </div> -->
+                    <!-- TODO: remove legacy select customers dropdown end -->
                 </div>
 
                 <div class="table-responsive">
@@ -154,15 +174,65 @@
     {{--Checkout Modal--}}
     @include('livewire.pos.includes.checkout-modal')
 
+    {{--Create Customer Modal--}}
+    @include('livewire.pos.includes.create-customer-modal')
+
 </div>
 
 <script>
     function dynamicNameSearch(e, arr) {
+        var isCustomerFound = false;
+        var customerCounter = 0;
+        // TODO: rework below method
+        // turn off all dropdown items
+        for (var j = 0; j < document.getElementsByClassName("customers-dropdown-item").length; j++) {
+            document.getElementsByClassName("customers-dropdown-item")[j].style.display = "none";
+        }
+        document.getElementById("customers-dropdown-item-prompt").style.display = "block";
+
+        // hide Create New User Btn and No matches span
+        if (document.getElementById("create-new-user-from-pos-dropdown").classList.contains("d-block")) {
+            document.getElementById("create-new-user-from-pos-dropdown").classList.remove("d-block");
+            document.getElementById("create-new-user-from-pos-dropdown").classList.add("d-none");
+        }
+
+        // turn dropdowns on one by one if matches
         for (var i = 0; i < arr.length; i++) {
             if (arr[i].customer_name.includes(e.target.value)) {
-                console.log(arr[i].customer_name);
-                //e.target.value = arr[i].customer_name;
+                for (var j = 0; j < document.getElementsByClassName("customers-dropdown-item").length; j++) {
+                    if (document.getElementsByClassName("customers-dropdown-item")[j].innerText == arr[i].customer_name) {
+                        document.getElementsByClassName("customers-dropdown-item")[j].style.display = "block";
+                        customerCounter++;
+                    }
+                }
+                isCustomerFound = true;
             }
         }
+        
+        // when customer is not found
+        if (customerCounter < 1) {
+            document.getElementById("customers-dropdown-item-prompt").style.display = "none";
+            if (document.getElementById("create-new-user-from-pos-dropdown").classList.contains("d-none")) {
+                document.getElementById("create-new-user-from-pos-dropdown").classList.remove("d-none");
+                document.getElementById("create-new-user-from-pos-dropdown").classList.add("d-block");
+            }
+
+            if (document.getElementById("dropdown-item-no-match-dropdown").classList.contains("d-none")) {
+                document.getElementById("dropdown-item-no-match-dropdown").classList.remove("d-none");
+                document.getElementById("dropdown-item-no-match-dropdown").classList.add("d-block");
+            }
+        }
+    }
+
+    function populateCustomerInputWithClicked(event) {
+        let currentElement = document.getElementById("customer-name-autocomplete");
+        currentElement.value = event.innerText;
+        setSelectValue(event.getAttribute('data-value'));
+    }
+
+    function setSelectValue(valueToSelect) {
+        let element = document.getElementById('customer_id');
+        element.value = valueToSelect;
+        console.log(element.value);
     }
 </script>

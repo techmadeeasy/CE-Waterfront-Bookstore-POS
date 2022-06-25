@@ -52,6 +52,32 @@ class CustomersController extends Controller
         return redirect()->route('customers.index');
     }
 
+    public function quickStore(Request $request) {
+        abort_if(Gate::denies('create_customers'), 403);
+
+        $request->validate([
+            'customer_name'  => 'required|string|max:255',
+            'customer_phone' => 'required|max:255',
+            'customer_email' => 'email|max:255',
+            'city'           => 'string|max:255',
+            'country'        => 'string|max:255',
+            'address'        => 'string|max:500',
+        ]);
+
+        Customer::create([
+            'customer_name'  => $request->customer_name,
+            'customer_phone' => $request->customer_phone,
+            'customer_email' => $request->customer_email,
+            'city'           => $request->city,
+            'country'        => $request->country,
+            'address'        => $request->address
+        ]);
+
+        toast('Customer Created!', 'success');
+
+        return redirect()->route('app.pos.index');
+    }
+
 
     public function show(Customer $customer) {
         abort_if(Gate::denies('show_customers'), 403);
@@ -74,9 +100,9 @@ class CustomersController extends Controller
             'customer_name'  => 'required|string|max:255',
             'customer_phone' => 'required|max:255',
             'customer_email' => 'required|email|max:255',
-            'city'           => 'required|string|max:255',
-            'country'        => 'required|string|max:255',
-            'address'        => 'required|string|max:500',
+            'city'           => 'string|max:255',
+            'country'        => 'string|max:255',
+            'address'        => 'string|max:500',
         ]);
 
         $customer->update([

@@ -13,8 +13,10 @@
 
 Route::group(['middleware' => 'auth'], function () {
 
+    Route::post('customers/quick-store', 'CustomersController@quickStore')->name('customers.quick-store');
     //Customers
     Route::resource('customers', 'CustomersController');
+
     //Suppliers
     Route::resource('suppliers', 'SuppliersController');
 
