@@ -200,7 +200,8 @@
         for (var i = 0; i < arr.length; i++) {
             if (arr[i].customer_name.includes(e.target.value)) {
                 for (var j = 0; j < document.getElementsByClassName("customers-dropdown-item").length; j++) {
-                    if (document.getElementsByClassName("customers-dropdown-item")[j].innerText == arr[i].customer_name) {
+                    console.log(document.getElementsByClassName("customers-dropdown-item")[j].textContent);
+                    if (document.getElementsByClassName("customers-dropdown-item")[j].innerText.includes(arr[i].customer_name)) {
                         document.getElementsByClassName("customers-dropdown-item")[j].style.display = "block";
                         customerCounter++;
                     }
