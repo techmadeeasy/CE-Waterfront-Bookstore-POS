@@ -22,6 +22,7 @@ class Checkout extends Component
     public $data;
     public $customer_id;
     public $total_amount;
+    public $paid_amount;
 
     public function mount($cartInstance, $customers) {
         $this->cart_instance = $cartInstance;
@@ -34,6 +35,7 @@ class Checkout extends Component
         $this->discount_type = [];
         $this->item_discount = [];
         $this->total_amount = 0;
+        $this->paid_amount = 0.00;
     }
 
     public function hydrate() {

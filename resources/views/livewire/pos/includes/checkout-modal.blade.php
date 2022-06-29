@@ -38,19 +38,33 @@
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label for="paid_amount">Received Amount <span class="text-danger">*</span></label>
-                                        <input id="paid_amount" type="text" class="form-control" name="paid_amount" value="{{ $total_amount }}" required>
+                                        <input id="paid_amount" type="text" class="form-control" name="paid_amount" value="{{ $total_amount }}">
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label for="payment_method">Payment Method <span class="text-danger">*</span></label>
-                                <select class="form-control" name="payment_method" id="payment_method" required>
-                                    <option value="Cash">Cash</option>
-                                    <option value="Credit Card">Card</option>
-                                    <option value="Bank Transfer">EFT</option>
-                                    <option value="Cheque">Credit</option>
-                                    <option value="Other">Other</option>
-                                </select>
+                            <div class="form-row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="payment_method">Payment Method <span class="text-danger">*</span></label>
+                                        <select class="form-control" name="payment_method" id="payment_method" required>
+                                            <option value="Cash">Cash</option>
+                                            <option value="Credit Card">Card</option>
+                                            <option value="Bank Transfer">EFT</option>
+                                            <option value="Cheque">Credit</option>
+                                            <option value="Other">Other</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="payment_status">Payment Status <span class="text-danger">*</span></label>
+                                        <select class="form-control" name="payment_status" id="payment_status" required>
+                                            <option value="Unpaid">Unpaid</option>
+                                            <option value="Partial">Partially Paid</option>
+                                            <option value="Paid" selected>Paid</option>
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="note">Note (If Needed)</label>

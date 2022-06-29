@@ -58,17 +58,27 @@
                             <livewire:product-cart :cartInstance="'sale'" :data="$sale"/>
 
                             <div class="form-row">
-                                <div class="col-lg-4">
+                                <div class="col-lg-3">
                                     <div class="form-group">
                                         <label for="status">Status <span class="text-danger">*</span></label>
                                         <select class="form-control" name="status" id="status" required>
-                                            <option {{ $sale->status == 'Pending' ? 'selected' : '' }} value="Pending">Pending</option>
+                                            <option {{ $sale->status == 'Pending' ? 'selected' : '' }} value="Pending">Not Collected</option>
                                             <option {{ $sale->status == 'Shipped' ? 'selected' : '' }} value="Shipped">Shipped</option>
-                                            <option {{ $sale->status == 'Completed' ? 'selected' : '' }} value="Completed">Completed</option>
+                                            <option {{ $sale->status == 'Completed' ? 'selected' : '' }} value="Completed">Collected</option>
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-lg-4">
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label for="status">Payment Status <span class="text-danger">*</span></label>
+                                        <select class="form-control" name="status" id="status" required>
+                                            <option {{ $sale->status == 'Unpaid' ? 'selected' : '' }} value="Unpaid">Unpaid</option>
+                                            <option {{ $sale->status == 'Partial' ? 'selected' : '' }} value="Partial">Partially Paid</option>
+                                            <option {{ $sale->status == 'Paid' ? 'selected' : '' }} value="Paid">Paid</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
                                     <div class="from-group">
                                         <div class="form-group">
                                             <label for="payment_method">Payment Method <span class="text-danger">*</span></label>
@@ -76,7 +86,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-4">
+                                <div class="col-lg-3">
                                     <div class="form-group">
                                         <label for="paid_amount">Amount Received <span class="text-danger">*</span></label>
                                         <input id="paid_amount" type="text" class="form-control" name="paid_amount" required value="{{ $sale->paid_amount }}" readonly>

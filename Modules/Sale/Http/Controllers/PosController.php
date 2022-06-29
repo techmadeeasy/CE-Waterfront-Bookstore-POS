@@ -102,13 +102,13 @@ class PosController extends Controller
         DB::transaction(function () use ($request) {
             $due_amount = $request->total_amount - $request->paid_amount;
 
-            if ($due_amount == $request->total_amount) {
-                $payment_status = 'Unpaid';
-            } elseif ($due_amount > 0) {
-                $payment_status = 'Partial';
-            } else {
-                $payment_status = 'Paid';
-            }
+            // if ($due_amount == $request->total_amount) {
+            //     $payment_status = 'Unpaid';
+            // } elseif ($due_amount > 0) {
+            //     $payment_status = 'Partial';
+            // } else {
+            //     $payment_status = 'Paid';
+            // }
 
             $sale = Sale::create([
                 'date' => now()->format('Y-m-d'),
@@ -122,7 +122,7 @@ class PosController extends Controller
                 'total_amount' => $request->total_amount * 100,
                 'due_amount' => $due_amount * 100,
                 'status' => 'Completed',
-                'payment_status' => $payment_status,
+                'payment_status' => $request->payment_status,
                 'payment_method' => $request->payment_method,
                 'note' => $request->note,
                 'tax_amount' => Cart::instance('sale')->tax() * 100,
