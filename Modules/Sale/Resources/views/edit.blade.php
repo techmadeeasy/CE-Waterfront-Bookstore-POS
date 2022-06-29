@@ -72,9 +72,9 @@
                                     <div class="form-group">
                                         <label for="status">Payment Status <span class="text-danger">*</span></label>
                                         <select class="form-control" name="status" id="status" required>
+                                            <option {{ $sale->status == 'Paid' ? 'selected' : '' }} value="Paid">Paid</option>
                                             <option {{ $sale->status == 'Unpaid' ? 'selected' : '' }} value="Unpaid">Unpaid</option>
                                             <option {{ $sale->status == 'Partial' ? 'selected' : '' }} value="Partial">Partially Paid</option>
-                                            <option {{ $sale->status == 'Paid' ? 'selected' : '' }} value="Paid">Paid</option>
                                         </select>
                                     </div>
                                 </div>
@@ -89,7 +89,7 @@
                                 <div class="col-lg-3">
                                     <div class="form-group">
                                         <label for="paid_amount">Amount Received <span class="text-danger">*</span></label>
-                                        <input id="paid_amount" type="text" class="form-control" name="paid_amount" required value="{{ $sale->paid_amount }}" readonly>
+                                        <input id="paid_amount" type="text" class="form-control" name="paid_amount" required value="{{ $sale->paid_amount }}">
                                     </div>
                                 </div>
                             </div>
