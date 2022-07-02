@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>@yield('title') || {{ config('app.name') }}</title>
-    <meta content="Fahim Anzam Dip" name="author">
+    <meta content="Church Christ Embassy Jesus Love Pastor Chris Oyakhilome Cape Town Food Joy Table Mountain God Family Shoes" name="description">
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
     <!-- Favicon -->
-    <link rel="icon" href="{{ asset('images/favicon.png') }}">
+    <link rel="icon" href="{{ asset('images/logo-color-icon.ico') }}">
 
     @include('includes.main-css')
 </head>
