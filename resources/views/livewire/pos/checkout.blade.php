@@ -198,10 +198,9 @@
 
         // turn dropdowns on one by one if matches
         for (var i = 0; i < arr.length; i++) {
-            if (arr[i].customer_name.includes(e.target.value)) {
+            if (arr[i].customer_name.toUpperCase().includes(e.target.value.toUpperCase())) {
                 for (var j = 0; j < document.getElementsByClassName("customers-dropdown-item").length; j++) {
-                    console.log(document.getElementsByClassName("customers-dropdown-item")[j].textContent);
-                    if (document.getElementsByClassName("customers-dropdown-item")[j].innerText.includes(arr[i].customer_name)) {
+                    if (document.getElementsByClassName("customers-dropdown-item")[j].innerText.toUpperCase().includes(arr[i].customer_name.toUpperCase())) {
                         document.getElementsByClassName("customers-dropdown-item")[j].style.display = "block";
                         customerCounter++;
                     }
@@ -234,6 +233,5 @@
     function setSelectValue(valueToSelect) {
         let element = document.getElementById('customer_id');
         element.value = valueToSelect;
-        console.log(element.value);
     }
 </script>
