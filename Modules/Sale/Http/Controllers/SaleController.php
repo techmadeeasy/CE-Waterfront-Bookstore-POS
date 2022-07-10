@@ -169,7 +169,6 @@ class SaleController extends Controller
                 }
                 $sale_detail->delete();
             }
-
             $sale->update([
                 'date' => $request->date,
                 'reference' => $request->reference,
@@ -182,7 +181,7 @@ class SaleController extends Controller
                 'total_amount' => $request->total_amount * 100,
                 'due_amount' => $due_amount * 100,
                 'status' => $request->status,
-                'payment_status' => $payment_status,
+                'payment_status' => $request->payment_status,
                 'payment_method' => $request->payment_method,
                 'note' => $request->note,
                 'tax_amount' => Cart::instance('sale')->tax() * 100,

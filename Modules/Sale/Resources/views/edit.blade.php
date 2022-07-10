@@ -70,11 +70,11 @@
                                 </div>
                                 <div class="col-lg-3">
                                     <div class="form-group">
-                                        <label for="status">Payment Status <span class="text-danger">*</span></label>
-                                        <select class="form-control" name="status" id="status" required>
-                                            <option {{ $sale->status == 'Paid' ? 'selected' : '' }} value="Paid">Paid</option>
-                                            <option {{ $sale->status == 'Unpaid' ? 'selected' : '' }} value="Unpaid">Unpaid</option>
-                                            <option {{ $sale->status == 'Partial' ? 'selected' : '' }} value="Partial">Partially Paid</option>
+                                        <label for="payment_status">Payment Status <span class="text-danger">*</span></label>
+                                        <select class="form-control" name="payment_status" id="payment_status" required>
+                                            <option {{ $sale->payment_status == 'Paid' ? 'selected' : '' }} value="Paid">Paid</option>
+                                            <option {{ $sale->payment_status == 'Unpaid' ? 'selected' : '' }} value="Unpaid">Unpaid</option>
+                                            <option {{ $sale->payment_status == 'Partial' ? 'selected' : '' }} value="Partial">Partially Paid</option>
                                         </select>
                                     </div>
                                 </div>
