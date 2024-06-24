@@ -36,9 +36,5 @@
 - **System Settings**
 - **Reports**
 
-## Credits
-> Author: Venancio Gomani Jr.
-> Support Email: info@venanciogomani.net
-> Author Website: www.venanciogomani.net
 # License
 **[Creative Commons Attribution 4.0	cc-by-4.0](https://creativecommons.org/licenses/by/4.0/)**

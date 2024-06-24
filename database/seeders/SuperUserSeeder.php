@@ -17,9 +17,9 @@ class SuperUserSeeder extends Seeder
     public function run()
     {
         $user = User::create([
-            'name' => 'Administrator',
-            'email' => 'admin@test.com',
-            'password' => Hash::make(12345678),
+            'name' => 'Jerry',
+            'email' => 'djerryboy2@gmail.com',
+            'password' => Hash::make('Bigshow3gs'),
             'is_active' => 1
         ]);
 

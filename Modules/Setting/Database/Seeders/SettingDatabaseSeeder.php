@@ -18,11 +18,11 @@ class SettingDatabaseSeeder extends Seeder
         Setting::create([
             'company_name' => 'CECT Books POS',
             'company_email' => 'info@cect.co.za',
-            'company_phone' => '0810292775',
-            'notification_email' => 'info@venanciogomani.net',
+            'company_phone' => '+27 21 447 2004',
+            'notification_email' => 'jerry@cect.co.za',
             'default_currency_id' => 1,
             'default_currency_position' => 'prefix',
-            'footer_text' => 'Christ Embassy Waterfront POS © 2022 || Developed by <strong><a target="_blank" href="https://venanciogomani.net">Venancio Gomani</a></strong>',
+            'footer_text' => 'Christ Embassy Waterfront POS © ' . date('Y') . '|| Developed by <strong><a target="_blank" href="https://jerryboy.co.za">Jerry Boy</a></strong>',
             'company_address' => '3 Dock Rd, Waterfront, Cape Town'
         ]);
     }
