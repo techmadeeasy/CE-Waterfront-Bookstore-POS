@@ -40,15 +40,15 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    protected function authenticated(Request $request, $user) {
-        if ($user->is_active != 1) {
-            Auth::logout();
-
-            return back()->with([
-                'account_deactivated' => 'Your account is deactivated! Please contact with Super Admin.'
-            ]);
-        }
-
-        return next($request);
-    }
+//    protected function authenticated(Request $request, $user) {
+//        if ($user->is_active != 1) {
+//            Auth::logout();
+//
+//            return back()->with([
+//                'account_deactivated' => 'Your account is deactivated! Please contact with Super Admin.'
+//            ]);
+//        }
+//
+//        return redirect()->intended($this->redirectPath());
+//    }
 }
