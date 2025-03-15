@@ -87,6 +87,8 @@
                             <th>Date</th>
                             <th>Reference</th>
                             <th>Customer</th>
+                            <th>Payment Method</th>
+                            <th>Products</th>
                             <th>Status</th>
                             <th>Total</th>
                             <th>Paid</th>
@@ -100,6 +102,12 @@
                                 <td>{{ \Carbon\Carbon::parse($sale->date)->format('d M, Y') }}</td>
                                 <td>{{ $sale->reference }}</td>
                                 <td>{{ $sale->customer_name }}</td>
+                                <td>{{ $sale->payment_method }}</td>
+                                <td>
+                                    @foreach($sale->saleDetails as $saleDetail)
+                                        <span>{{ $saleDetail->product->product_name }}</span>
+                                    @endforeach
+                                </td>
                                 <td>
                                     @if ($sale->status == 'Pending')
                                         <span class="badge badge-info">

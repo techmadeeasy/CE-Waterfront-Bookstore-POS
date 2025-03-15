@@ -18,8 +18,16 @@ class SalesDataTable extends DataTable
             ->addColumn('total_amount', function ($data) {
                 return format_currency($data->total_amount);
             })
+            ->addColumn('products', function ($data) {
+                return $data->saleDetails->map(function ($saleDetail) {
+                    return $saleDetail->product->product_name;
+                })->implode(', ');
+            })
             ->addColumn('paid_amount', function ($data) {
                 return format_currency($data->paid_amount);
+            })
+            ->addColumn('payment_method', function ($data) {
+                return $data->payment_method;
             })
             ->addColumn('due_amount', function ($data) {
                 return format_currency($data->due_amount);
@@ -30,13 +38,16 @@ class SalesDataTable extends DataTable
             ->addColumn('payment_status', function ($data) {
                 return view('sale::partials.payment-status', compact('data'));
             })
+            ->addColumn('created_at', function ($data) {
+                 return $data->created_at->format('d M Y');
+            })
             ->addColumn('action', function ($data) {
                 return view('sale::partials.actions', compact('data'));
             });
     }
 
     public function query(Sale $model) {
-        return $model->newQuery();
+        return $model->newQuery()->with('saleDetails', 'saleDetails.product');
     }
 
     public function html() {
@@ -69,7 +80,14 @@ class SalesDataTable extends DataTable
                 ->title('Customer')
                 ->className('text-center align-middle'),
 
+            Column::make('products')
+                ->title('Products')
+                ->className('text-center align-middle'),
+
             Column::computed('status')
+                ->className('text-center align-middle'),
+
+            Column::computed('payment_method')
                 ->className('text-center align-middle'),
 
             Column::computed('total_amount')
