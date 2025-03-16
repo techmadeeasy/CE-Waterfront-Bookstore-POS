@@ -79,7 +79,7 @@
                     <div class="mb-3">
                         <button type="submit" class="btn btn-primary" wire:click="exportReport">
                             <span wire:target="exportReport" wire:loading class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                            <i wire:target="exportReport" wire:loading.remove class="bi bi-shuffle"></i>
+                            <i wire:target="exportReport" wire:loading.remove class="bi bi-download"></i>
                             Export Excel
                         </button>
                     </div>
