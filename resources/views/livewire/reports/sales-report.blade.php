@@ -76,6 +76,13 @@
         <div class="col-12">
             <div class="card border-0 shadow-sm">
                 <div class="card-body">
+                    <div class="mb-3">
+                        <button type="submit" class="btn btn-primary" wire:click="exportReport">
+                            <span wire:target="exportReport" wire:loading class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                            <i wire:target="exportReport" wire:loading.remove class="bi bi-shuffle"></i>
+                            Export Excel
+                        </button>
+                    </div>
                     <table class="table table-bordered table-striped text-center mb-0">
                         <div wire:loading.flex class="col-12 position-absolute justify-content-center align-items-center" style="top:0;right:0;left:0;bottom:0;background-color: rgba(255,255,255,0.5);z-index: 99;">
                             <div class="spinner-border text-primary" role="status">

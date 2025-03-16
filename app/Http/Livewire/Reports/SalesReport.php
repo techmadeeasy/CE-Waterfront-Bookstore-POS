@@ -2,8 +2,10 @@
 
 namespace App\Http\Livewire\Reports;
 
+use App\Exports\SalesExport;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Maatwebsite\Excel\Facades\Excel;
 use Modules\Sale\Entities\Sale;
 
 class SalesReport extends Component
@@ -57,5 +59,10 @@ class SalesReport extends Component
     public function generateReport() {
         $this->validate();
         $this->render();
+    }
+
+    public function exportReport()
+    {
+        return Excel::download(new SalesExport($this->start_date, $this->end_date, $this->customer_id, $this->sale_status, $this->payment_status), 'sales-report.xlsx');
     }
 }
