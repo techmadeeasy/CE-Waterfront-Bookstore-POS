@@ -32,11 +32,11 @@ class SalesDataTable extends DataTable
             ->addColumn('due_amount', function ($data) {
                 return format_currency($data->due_amount);
             })
-            ->addColumn('status', function ($data) {
-                return view('sale::partials.status', compact('data'));
-            })
             ->addColumn('payment_status', function ($data) {
                 return view('sale::partials.payment-status', compact('data'));
+            })
+            ->addColumn('sales_person', function ($data) {
+                return $data->salePerson ? $data->salePerson->name : 'N/A';
             })
             ->addColumn('created_at', function ($data) {
                  return $data->created_at->format('d M Y');
@@ -47,7 +47,7 @@ class SalesDataTable extends DataTable
     }
 
     public function query(Sale $model) {
-        return $model->newQuery()->with('saleDetails', 'saleDetails.product');
+        return $model->newQuery()->with('saleDetails', 'saleDetails.product', 'salePerson');
     }
 
     public function html() {
@@ -84,9 +84,6 @@ class SalesDataTable extends DataTable
                 ->title('Products')
                 ->className('text-center align-middle'),
 
-            Column::computed('status')
-                ->className('text-center align-middle'),
-
             Column::computed('payment_method')
                 ->className('text-center align-middle'),
 
@@ -100,6 +97,9 @@ class SalesDataTable extends DataTable
                 ->className('text-center align-middle'),
 
             Column::computed('payment_status')
+                ->className('text-center align-middle'),
+
+            Column::computed('sales_person')
                 ->className('text-center align-middle'),
 
             Column::computed('action')

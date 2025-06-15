@@ -62,6 +62,7 @@ class SaleController extends Controller
                 'note' => $request->note,
                 'tax_amount' => Cart::instance('sale')->tax() * 100,
                 'discount_amount' => Cart::instance('sale')->discount() * 100,
+                'user_id' => auth()->user()->id,
             ]);
 
             foreach (Cart::instance('sale')->content() as $cart_item) {

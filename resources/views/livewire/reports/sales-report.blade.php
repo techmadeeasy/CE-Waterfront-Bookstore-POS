@@ -96,10 +96,10 @@
                             <th>Customer</th>
                             <th>Payment Method</th>
                             <th>Products</th>
-                            <th>Status</th>
                             <th>Total</th>
                             <th>Paid</th>
                             <th>Due</th>
+                            <th>Sales Person</th>
                             <th>Payment Status</th>
                         </tr>
                         </thead>
@@ -114,21 +114,6 @@
                                     @foreach($sale->saleDetails as $saleDetail)
                                         <span>{{ $saleDetail->product->product_name }}</span>
                                     @endforeach
-                                </td>
-                                <td>
-                                    @if ($sale->status == 'Pending')
-                                        <span class="badge badge-info">
-                                    {{ $sale->status }}
-                                </span>
-                                    @elseif ($sale->status == 'Shipped')
-                                        <span class="badge badge-primary">
-                                    {{ $sale->status }}
-                                </span>
-                                    @else
-                                        <span class="badge badge-success">
-                                    {{ $sale->status }}
-                                </span>
-                                    @endif
                                 </td>
                                 <td>{{ format_currency($sale->total_amount) }}</td>
                                 <td>{{ format_currency($sale->paid_amount) }}</td>
@@ -147,7 +132,9 @@
                                     {{ $sale->payment_status }}
                                 </span>
                                     @endif
-
+                                        <span class="badge badge-danger">
+                                    {{ $sale->salePerson->name ?? 'N/A' }}
+                                </span>
                                 </td>
                             </tr>
                         @empty
